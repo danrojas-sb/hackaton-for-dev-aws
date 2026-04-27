@@ -17,5 +17,28 @@ services:
       timeout: 5s
       retries: 5
 
+  localstack:
+    image: localstack/localstack:3.5
+    container_name: centralizador-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      SERVICES: sqs,lambda
+      DEFAULT_REGION: us-east-1
+      LAMBDA_EXECUTOR: local
+      DOCKER_HOST: unix:///var/run/docker.sock
+    volumes:
+      - ./docker/localstack:/etc/localstack/init/ready.d
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/lambda:/opt/lambda
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      mysql:
+        condition: service_healthy
+
 volumes:
   mysql_data:

@@ -14,3 +14,15 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+  task:
+    scheduling:
+      pool:
+        size: 2
+
+aws:
+  region: us-east-1
+  sqs:
+    endpoint: http://localhost:4566
+    queue:
+      envio: facturas-envio
+      respuesta: facturas-respuesta

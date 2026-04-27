@@ -39,6 +39,9 @@ class FacturaServiceTest {
     @Mock
     private FacturaRepository facturaRepository;
 
+    @Mock
+    private SqsProducerService sqsProducerService;
+
     @InjectMocks
     private FacturaService facturaService;
 

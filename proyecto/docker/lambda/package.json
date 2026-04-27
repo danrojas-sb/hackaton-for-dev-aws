@@ -1,0 +1,14 @@
+{
+  "name": "lambda-contabilizadora",
+  "version": "1.0.0",
+  "description": "Lambda que contabiliza facturas en db_procesos_masivos y responde via SQS",
+  "type": "module",
+  "main": "index.mjs",
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "mysql2": "3.22.3",
+    "@aws-sdk/client-sqs": "3.1037.0"
+  }
+}
