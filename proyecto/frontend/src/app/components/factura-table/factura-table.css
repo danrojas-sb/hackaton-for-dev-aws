@@ -10,16 +10,19 @@
 .factura-table td {
   padding: 10px 12px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .factura-table th {
-  background: #f5f5f5;
+  background: var(--bolivar-green-light);
   font-weight: 600;
-  color: #333;
+  color: var(--bolivar-green-dark);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.4px;
 }
 
-.factura-table tbody tr:hover { background: #fafafa; }
+.factura-table tbody tr:hover { background: #FAFCFA; }
 
 .badge {
   padding: 4px 10px;
@@ -27,14 +30,15 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: #fff;
+  display: inline-block;
 }
 
-.badge-pendiente { background: #FFC107; color: #333; }
-.badge-proceso { background: #2196F3; }
-.badge-terminado { background: #4CAF50; }
-.badge-error { background: #F44336; }
+.badge-pendiente { background: var(--estado-pendiente); color: var(--estado-pendiente-text); }
+.badge-proceso   { background: var(--estado-proceso); }
+.badge-terminado { background: var(--estado-terminado); }
+.badge-error     { background: var(--estado-error); }
 
-.empty-row { text-align: center; color: #999; padding: 24px; }
+.empty-row { text-align: center; color: var(--color-text-muted); padding: 24px; }
 
 .pagination {
   display: flex;
@@ -46,12 +50,14 @@
 
 .pagination button {
   padding: 6px 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--bolivar-green);
   border-radius: 4px;
   background: #fff;
+  color: var(--bolivar-green);
   cursor: pointer;
+  font-weight: 600;
 }
 
 .pagination button:disabled { opacity: 0.4; cursor: default; }
-.pagination button:hover:not(:disabled) { background: #f0f0f0; }
-.pagination span { font-size: 0.85rem; color: #666; }
+.pagination button:hover:not(:disabled) { background: var(--bolivar-green-light); }
+.pagination span { font-size: 0.85rem; color: var(--color-text-muted); }

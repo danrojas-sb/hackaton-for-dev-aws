@@ -3,8 +3,11 @@
   margin: 0 auto;
 }
 
-.chart-container h3 {
+.chart-title {
   text-align: center;
-  color: #333;
+  color: var(--bolivar-green-dark);
   margin-bottom: 12px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }

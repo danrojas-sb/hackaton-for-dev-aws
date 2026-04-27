@@ -1,20 +1,35 @@
-<div class="dashboard">
-  <header class="dashboard-header">
-    <h1>Centralizador Facturas Packs</h1>
-    <p>Panel de control de cargue y estados de facturas</p>
+<div class="app-shell">
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <img class="brand__logo" src="logo-seguros-bolivar.png" alt="Seguros Bolívar" />
+        <div class="brand__text">
+          <span class="brand__subtitle">Centralizador IE Facturas</span>
+        </div>
+      </div>
+      <span class="app-header__badge">Centralizador I&amp;E</span>
+    </div>
+    <div class="app-header__accent"></div>
   </header>
 
-  <section class="carga-section">
-    <app-carga-facturas (cargaExitosa)="onCargaExitosa()" />
-  </section>
+  <main class="dashboard">
+    <section class="page-title">
+      <h1>Panel de control</h1>
+      <p>Cargue masivo y monitoreo de estados de facturas</p>
+    </section>
 
-  <section class="content-section">
-    <div class="chart-panel">
-      <app-estados-chart [resumen]="resumen()" />
-    </div>
-    <div class="table-panel">
-      <h3>Facturas</h3>
-      <app-factura-table [page]="page()" (pageChange)="onPageChange($event)" />
-    </div>
-  </section>
+    <section class="carga-section">
+      <app-carga-facturas (cargaExitosa)="onCargaExitosa()" />
+    </section>
+
+    <section class="content-section">
+      <div class="chart-panel">
+        <app-estados-chart [resumen]="resumen()" />
+      </div>
+      <div class="table-panel">
+        <h3>Facturas</h3>
+        <app-factura-table [page]="page()" (pageChange)="onPageChange($event)" />
+      </div>
+    </section>
+  </main>
 </div>

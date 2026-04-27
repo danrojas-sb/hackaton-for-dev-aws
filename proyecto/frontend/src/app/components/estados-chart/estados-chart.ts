@@ -18,10 +18,10 @@ export class EstadosChartComponent {
   resumen = input.required<EstadoResumen>();
 
   private readonly colores: Record<string, string> = {
-    PENDIENTE: '#FFC107',
-    PROCESO: '#2196F3',
-    TERMINADO: '#4CAF50',
-    ERROR: '#F44336',
+    PENDIENTE: '#FFD100',
+    PROCESO: '#1976D2',
+    TERMINADO: '#009739',
+    ERROR: '#D32F2F',
   };
 
   chartData = computed<ChartData<'pie'>>(() => {

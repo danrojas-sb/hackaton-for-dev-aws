@@ -1,3 +1,5 @@
+name: proyecto
+
 services:
   mysql:
     image: mysql:8.0
@@ -24,9 +26,8 @@ services:
       - "4566:4566"
     environment:
       SERVICES: sqs,lambda
-      DEFAULT_REGION: us-east-1
-      LAMBDA_EXECUTOR: local
       DOCKER_HOST: unix:///var/run/docker.sock
+      LAMBDA_DOCKER_NETWORK: proyecto_default
     volumes:
       - ./docker/localstack:/etc/localstack/init/ready.d
       - /var/run/docker.sock:/var/run/docker.sock

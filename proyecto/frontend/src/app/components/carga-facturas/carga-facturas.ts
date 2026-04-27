@@ -69,18 +69,39 @@ export class CargaFacturasComponent {
 
   /** Parsea un string CSV a un array de objetos. */
   private parseCsv(csv: string): Partial<Factura>[] {
-    const lines = csv.trim().split('\n');
+    const lines = csv.trim().split(/\r?\n/);
     if (lines.length < 2) return [];
 
     const headers = lines[0].split(',').map(h => h.trim());
 
     return lines.slice(1).map(line => {
       const values = line.split(',').map(v => v.trim());
-      const obj: Record<string, string> = {};
+      const obj: Record<string, unknown> = {};
       headers.forEach((header, i) => {
-        obj[header] = values[i] ?? '';
+        const raw = values[i] ?? '';
+        obj[header] = this.normalizeValue(header, raw);
       });
       return obj as unknown as Partial<Factura>;
     });
+  }
+
+  /** Normaliza un valor según el header al que pertenece. */
+  private normalizeValue(header: string, raw: string): unknown {
+    if (raw === '') return null;
+    if (header === 'fechaPago') return this.toIsoDate(raw);
+    if (header === 'valorPack' || header === 'valorPackIva') {
+      const n = Number(raw);
+      return Number.isFinite(n) ? n : raw;
+    }
+    return raw;
+  }
+
+  /** Convierte 'd/M/yyyy' o 'dd/MM/yyyy' a 'yyyy-MM-dd'. Si ya viene en ISO, lo deja. */
+  private toIsoDate(value: string): string {
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    const m = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (!m) return value;
+    const [, d, mo, y] = m;
+    return `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`;
   }
 }

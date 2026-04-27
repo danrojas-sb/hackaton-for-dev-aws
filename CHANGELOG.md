@@ -71,6 +71,19 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 - Se agregó endpoint PUT /api/facturas/{id}/reintentar en FacturaController con HTTP 200 en éxito
 - Se agregó @ExceptionHandler para FacturaNotFoundException → HTTP 404 con mensaje descriptivo
 - Se agregó @ExceptionHandler para InvalidStateTransitionException → HTTP 400 indicando que solo facturas en ERROR pueden reintentarse
+- Se agregaron variables CSS centralizadas con paleta corporativa Seguros Bolívar (verde #009739, dorado #FFD100, verde oscuro #00471B) en `styles.css`
+- Se agregó header corporativo en dashboard con logo Seguros Bolívar (`logo-seguros-bolivar.png`), badge "Centralizador I&E" y franja de acento dorado→verde oscuro
+- Se ajustaron colores de torta de estados a paleta corporativa (PENDIENTE=dorado, TERMINADO=verde Bolívar)
+- Se ajustaron botones primarios a verde corporativo y acción principal "Cargar facturas" a dorado
+- Se ajustó `<title>` y `theme-color` con identidad Seguros Bolívar
 
 ### Corregido
 - Se corrigió bug de delayed expansion en `mvnw.cmd` que impedía ejecutar Maven Wrapper en Windows
+- Se fijó nombre del proyecto Compose a `proyecto` para que `LAMBDA_DOCKER_NETWORK` resuelva determinísticamente independiente del directorio de invocación
+- Se robusteció `init-aws.sh` con `set -euo pipefail`, limpieza de zips temporales previos, empaque en `/tmp` para evitar fallos de I/O en bind-mount, y `aws lambda wait function-active` antes del event source mapping
+- Se quitó `npm install` del init script de LocalStack (la imagen no incluye node/npm; enmascaraba errores reales)
+- Se parametrizó endpoint SQS en handler Lambda vía variable de entorno `SQS_ENDPOINT_URL` (antes: `localhost:4566` hardcodeado fallaba dentro del contenedor Lambda)
+- Se agregó `proyecto/docker/lambda/function.zip` a `.gitignore` como artefacto efímero regenerado por LocalStack
+- Se declaró `proxyConfig` en `angular.json` para que `ng serve` redirija `/api` a backend `:8080` (resuelve "Cannot POST /api/facturas/bulk")
+- Se registró Chart.js con `provideCharts(withDefaultRegisterables())` en `app.config.ts` (ng2-charts@10 ya no auto-registra; canvas se montaba pero no renderizaba)
+- Se ajustó parser CSV en `carga-facturas.ts` para convertir fechas `d/M/yyyy` → ISO `yyyy-MM-dd`, normalizar valores numéricos y mapear vacíos a `null` (resuelve HTTP 400 por `DateTimeParseException`)

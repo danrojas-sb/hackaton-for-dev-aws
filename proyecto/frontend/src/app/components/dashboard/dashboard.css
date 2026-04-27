@@ -1,3 +1,70 @@
+.app-shell {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.app-header {
+  background: var(--bolivar-green);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.app-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.app-header__accent {
+  height: 4px;
+  background: linear-gradient(90deg, var(--bolivar-gold) 0%, var(--bolivar-gold) 60%, var(--bolivar-green-dark) 100%);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand__logo {
+  height: 48px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.brand__subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.app-header__badge {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
 .dashboard {
   max-width: 1200px;
   margin: 0 auto;
@@ -5,28 +72,30 @@
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
-.dashboard-header {
-  margin-bottom: 24px;
+.page-title {
+  margin-bottom: 20px;
 }
 
-.dashboard-header h1 {
+.page-title h1 {
   font-size: 1.6rem;
-  color: #1976D2;
+  color: var(--bolivar-green-dark);
   margin: 0;
 }
 
-.dashboard-header p {
-  color: #666;
+.page-title p {
+  color: var(--color-text-muted);
   margin: 4px 0 0;
   font-size: 0.9rem;
 }
 
 .carga-section {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
   padding: 20px;
   margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--bolivar-green);
 }
 
 .content-section {
@@ -37,14 +106,15 @@
 
 .chart-panel,
 .table-panel {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
   padding: 20px;
+  box-shadow: var(--shadow-sm);
 }
 
 .table-panel h3 {
-  color: #333;
+  color: var(--bolivar-green-dark);
   margin: 0 0 12px;
 }
 
@@ -52,4 +122,5 @@
   .content-section {
     grid-template-columns: 1fr;
   }
+  .app-header__badge { display: none; }
 }

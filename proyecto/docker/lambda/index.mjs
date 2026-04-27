@@ -7,12 +7,13 @@ const {
   DB_USER,
   DB_PASSWORD,
   DB_NAME,
+  SQS_ENDPOINT_URL,
   SQS_RESPONSE_URL,
 } = process.env;
 
 const sqsClient = new SQSClient({
   region: 'us-east-1',
-  endpoint: 'http://localhost:4566',
+  endpoint: SQS_ENDPOINT_URL,
 });
 
 /**

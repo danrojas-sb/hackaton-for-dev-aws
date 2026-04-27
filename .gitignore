@@ -28,3 +28,6 @@ Thumbs.db
 
 # Docker
 mysql_data/
+
+# Lambda artifact (regenerado por init-aws.sh dentro de LocalStack)
+proyecto/docker/lambda/function.zip
