@@ -2,7 +2,7 @@
 
 ## Objetivo del Sprint
 
-Construir el microservicio completo de cargue de facturas packs con persistencia, control de estados, integración SQS y dashboard Angular funcional.
+Construir el microservicio completo de cargue de facturas packs con persistencia, control de estados, integración SQS, contabilización en `db_procesos_masivos` y dashboard Angular funcional. Sin dependencia de TRONADOR en este sprint.
 
 ## Duración
 

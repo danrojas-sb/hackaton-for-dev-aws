@@ -2,7 +2,7 @@
 
 ## Objetivo del Sprint
 
-Construir el microservicio completo de cargue de facturas packs con persistencia, control de estados, integración SQS y dashboard Angular funcional.
+Construir el microservicio completo de cargue de facturas packs con persistencia, control de estados, integración SQS, contabilización en `db_procesos_masivos` y dashboard Angular funcional. Sin dependencia de TRONADOR en este sprint.
 
 ## Duración
 
@@ -34,11 +34,12 @@ Hackathon - Iteración única
 ### HU-03: Envío a SQS y actualización de estados
 **Como** sistema
 **Quiero** enviar las facturas a la cola SQS y actualizar estados según respuesta
-**Para** orquestar la contabilización en TRONADOR de forma asíncrona
+**Para** orquestar la contabilización en `db_procesos_masivos` de forma asíncrona (bosquejo para TRONADOR en sprint futuro)
 
 **Criterios de aceptación:**
 - Al crear facturas, se envían a la cola SQS
 - El estado cambia de PENDIENTE a PROCESO al enviar
+- La Lambda contabiliza en la tabla `facturas_contabilizadas` del esquema `db_procesos_masivos`
 - Al recibir respuesta de la Lambda, el estado cambia a TERMINADO o ERROR
 - Las facturas en ERROR pueden reintentarse
 
