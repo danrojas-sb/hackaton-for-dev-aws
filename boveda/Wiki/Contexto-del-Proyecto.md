@@ -2,14 +2,16 @@
 
 ## Descripción General
 
-Microservicio que forma parte del ecosistema **Centralizador I&E**, encargado de recibir, persistir y gestionar el ciclo de vida de las facturas de packs. El servicio expone un API REST para la carga masiva de facturas, controla sus estados de procesamiento y orquesta el envío hacia la base de datos de **TRONADOR** a través de una cola SQS y una Lambda.
+Microservicio que forma parte del ecosistema **Centralizador I&E**, encargado de recibir, persistir y gestionar el ciclo de vida de las facturas de packs. El servicio expone un API REST para la carga masiva de facturas, controla sus estados de procesamiento y orquesta el envío asíncrono hacia el esquema `db_procesos_masivos` a través de una cola SQS y una Lambda.
+
+> **Nota**: En este sprint la contabilización se realiza en `db_procesos_masivos` (misma BD del Centralizador). En un sprint futuro se conectará a TRONADOR.
 
 ## Problema que Resuelve
 
 Actualmente el flujo de cargue de facturas de packs requiere un punto centralizado que:
 - Reciba la información de facturas validada desde archivos CSV
 - Persista los registros con trazabilidad de estados
-- Orqueste el envío asíncrono hacia los servicios comunes de contabilización
+- Orqueste el envío asíncrono hacia la tabla de contabilización
 - Provea visibilidad del estado general del proceso mediante un dashboard
 
 ## Arquitectura
@@ -29,7 +31,7 @@ flowchart TD
         G[SQS Listener - Callback]
     end
 
-    subgraph DB["MySQL"]
+    subgraph DB["MySQL - Centralizador"]
         H[(facturas)]
     end
 
@@ -39,22 +41,19 @@ flowchart TD
         K[Lambda Orquestador]
     end
 
-    subgraph Comunes["Servicios Comunes"]
-        L[API Socio de Negocio]
-        M[API Factura]
-        N[API Recibo de Caja]
+    subgraph Contabilizacion["MySQL - db_procesos_masivos"]
+        P[(facturas_contabilizadas)]
     end
 
-    O[(TRONADOR)]
+    Q[(TRONADOR - Sprint futuro)]
 
     A --> D
     B --> E
     Frontend -->|carga lote| C
     C -->|estado=Pendiente| H
     C --> F --> I --> K
-    K --> L --> O
-    K --> M --> O
-    K --> N --> O
+    K -->|contabiliza| P
+    K -.->|sprint futuro| Q
     K -->|resultado| J --> G -->|actualiza estado| H
 ```
 
@@ -88,7 +87,9 @@ stateDiagram-v2
 | Orquestación | AWS Lambda |
 | Contabilización | Servicios Comunes → TRONADOR |
 
-## Modelo de Datos - Tabla `facturas`
+## Modelo de Datos
+
+### Tabla `facturas` (esquema centralizador)
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
@@ -110,6 +111,31 @@ stateDiagram-v2
 | estado | ENUM | PENDIENTE, PROCESO, TERMINADO, ERROR |
 | fecha_creacion | DATETIME | Fecha de creación del registro |
 | fecha_actualizacion | DATETIME | Última actualización |
+
+### Tabla `facturas_contabilizadas` (esquema db_procesos_masivos)
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | BIGINT (PK) | Identificador único |
+| cus | VARCHAR | Código CUS |
+| fecha_pago | DATE | Fecha de pago |
+| responsabilidad_fiscal | VARCHAR | Responsabilidad fiscal |
+| tipo_documento | VARCHAR | Tipo de documento |
+| numero_documento | VARCHAR | Número de documento de identidad |
+| nombres | VARCHAR | Nombres del cliente |
+| apellidos | VARCHAR | Apellidos del cliente |
+| telefono | VARCHAR | Teléfono de contacto |
+| municipio | VARCHAR | Municipio |
+| direccion | VARCHAR | Dirección |
+| email | VARCHAR | Correo electrónico |
+| valor_pack | DECIMAL | Valor del pack sin IVA |
+| valor_pack_iva | DECIMAL | Valor del pack con IVA |
+| comentarios | TEXT | Comentarios adicionales |
+| estado_contable | ENUM | CONTABILIZADA, ERROR_CONTABLE |
+| fecha_contabilizacion | DATETIME | Fecha en que se contabilizó |
+| factura_origen_id | BIGINT | Referencia a la factura original |
+
+> En un sprint futuro esta tabla será reemplazada por la escritura directa a TRONADOR.
 
 ## Endpoints del API
 
