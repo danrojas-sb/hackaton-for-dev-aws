@@ -5,6 +5,7 @@
 - [[Wiki/Contexto-del-Proyecto|Contexto del Proyecto]]
 - [[Wiki/Sprint-1|Sprint 1]]
 - [[Wiki/Alcance|Alcance]]
+- [[Wiki/Estrategia-de-Trabajo|Estrategia de Trabajo en Equipo]]
 
 ## Insumos
 
