@@ -64,8 +64,8 @@ Hackathon - Iteración única
 | 5 | Docker Compose: LocalStack (SQS) + MySQL | HU-03 | Persona 2 | S | ⬜ Pendiente |
 | 6 | Lambda Node.js: consumir SQS, contabilizar en db_procesos_masivos, responder | HU-03 | Persona 2 | M | ⬜ Pendiente |
 | 7 | Integración SQS en Spring Boot: Productor y Listener | HU-03 | Persona 2 | M | ⬜ Pendiente |
-| 8 | Frontend Angular - Proyecto base + tabla de facturas | HU-04 | Persona 3 | M | ⬜ Pendiente |
-| 9 | Frontend Angular - Diagrama de torta + carga + dashboard | HU-04 | Persona 3 | M | ⬜ Pendiente |
+| 8 | Frontend Angular - Proyecto base + tabla de facturas | HU-04 | Persona 3 | M | ✅ Completado |
+| 9 | Frontend Angular - Diagrama de torta + carga + dashboard | HU-04 | Persona 3 | M | ✅ Completado |
 
 *Estimación: S=Small, M=Medium*
 

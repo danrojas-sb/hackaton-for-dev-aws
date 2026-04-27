@@ -1,0 +1,10 @@
+.chart-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.chart-container h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 12px;
+}

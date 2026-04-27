@@ -8,6 +8,15 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 ## [No publicado]
 
 ### Agregado
+- Se generó proyecto Angular 21 en `proyecto/frontend/` con ng2-charts y chart.js
+- Se creó `factura.model.ts` con interfaces Factura, PageResponse y EstadoResumen
+- Se creó `factura.service.ts` con métodos listar(), resumenEstados() y crearEnLote()
+- Se creó componente `factura-table` con tabla paginada y badges de color por estado
+- Se creó componente `estados-chart` con diagrama de torta (pie chart) usando ng2-charts
+- Se creó componente `carga-facturas` con parseo de CSV a JSON y carga masiva POST /bulk
+- Se creó componente `dashboard` integrando tabla, torta y carga con auto-refresh
+- Se configuró routing: / → DashboardComponent
+- Se configuró proxy.conf.json para redirigir /api a localhost:8080
 - Se creó estructura del repositorio con carpetas `boveda/` y `proyecto/`
 - Se creó documentación del proyecto en Obsidian (Contexto, Sprint-1, Alcance, Estrategia de Trabajo)
 - Se creó Docker Compose con MySQL 8.0 y esquemas `centralizador` + `db_procesos_masivos`
@@ -59,6 +68,9 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 - Se implementó método `reintentarFactura()` en FacturaService con @Transactional para cambiar ERROR→PENDIENTE y reenviar a SQS
 - Se modificó `crearFacturasEnLote()` para invocar `enviarASqs()` después de persistir el lote
 - Se inyectó SqsProducerService como dependencia en FacturaService (constructor con dos parámetros)
+- Se agregó endpoint PUT /api/facturas/{id}/reintentar en FacturaController con HTTP 200 en éxito
+- Se agregó @ExceptionHandler para FacturaNotFoundException → HTTP 404 con mensaje descriptivo
+- Se agregó @ExceptionHandler para InvalidStateTransitionException → HTTP 400 indicando que solo facturas en ERROR pueden reintentarse
 
 ### Corregido
 - Se corrigió bug de delayed expansion en `mvnw.cmd` que impedía ejecutar Maven Wrapper en Windows

@@ -1,0 +1,57 @@
+.table-container { overflow-x: auto; }
+
+.factura-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.factura-table th,
+.factura-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.factura-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.factura-table tbody tr:hover { background: #fafafa; }
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.badge-pendiente { background: #FFC107; color: #333; }
+.badge-proceso { background: #2196F3; }
+.badge-terminado { background: #4CAF50; }
+.badge-error { background: #F44336; }
+
+.empty-row { text-align: center; color: #999; padding: 24px; }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.pagination button {
+  padding: 6px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pagination button:disabled { opacity: 0.4; cursor: default; }
+.pagination button:hover:not(:disabled) { background: #f0f0f0; }
+.pagination span { font-size: 0.85rem; color: #666; }

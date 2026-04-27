@@ -1,0 +1,40 @@
+<div class="table-container">
+  <table class="factura-table">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Municipio</th>
+        <th>Valor Pack</th>
+        <th>Valor IVA</th>
+        <th>Estado</th>
+        <th>Fecha Pago</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (factura of page().content; track factura.id) {
+        <tr>
+          <td>{{ factura.numeroDocumento }}</td>
+          <td>{{ factura.nombres }}</td>
+          <td>{{ factura.apellidos }}</td>
+          <td>{{ factura.municipio }}</td>
+          <td>{{ factura.valorPack | number:'1.2-2' }}</td>
+          <td>{{ factura.valorPackIva | number:'1.2-2' }}</td>
+          <td><span class="badge" [class]="badgeClass(factura.estado)">{{ factura.estado }}</span></td>
+          <td>{{ factura.fechaPago }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="8" class="empty-row">No hay facturas cargadas</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page().number === 0">← Anterior</button>
+    <span>Página {{ page().number + 1 }} de {{ page().totalPages || 1 }} ({{ page().totalElements }} registros)</span>
+    <button (click)="nextPage()" [disabled]="page().number >= page().totalPages - 1">Siguiente →</button>
+  </div>
+</div>

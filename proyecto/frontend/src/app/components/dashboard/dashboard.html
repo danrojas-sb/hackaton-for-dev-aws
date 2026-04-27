@@ -1,0 +1,20 @@
+<div class="dashboard">
+  <header class="dashboard-header">
+    <h1>Centralizador Facturas Packs</h1>
+    <p>Panel de control de cargue y estados de facturas</p>
+  </header>
+
+  <section class="carga-section">
+    <app-carga-facturas (cargaExitosa)="onCargaExitosa()" />
+  </section>
+
+  <section class="content-section">
+    <div class="chart-panel">
+      <app-estados-chart [resumen]="resumen()" />
+    </div>
+    <div class="table-panel">
+      <h3>Facturas</h3>
+      <app-factura-table [page]="page()" (pageChange)="onPageChange($event)" />
+    </div>
+  </section>
+</div>
