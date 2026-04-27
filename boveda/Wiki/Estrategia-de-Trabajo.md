@@ -9,8 +9,8 @@ Cada persona trabaja en **carpetas y archivos completamente separados**. Si nadi
 | Persona | Rol | Carpeta exclusiva | Tasks |
 |---------|-----|-------------------|-------|
 | **Persona 1** | Backend - Entidad y API | `proyecto/backend/` | Task 2, 3, 4 |
-| **Persona 2** | Backend - SQS | `proyecto/backend/src/.../sqs/` | Task 5 |
-| **Persona 3** | Frontend | `proyecto/frontend/` | Task 6, 7 |
+| **Persona 2** | Backend - SQS + Lambda + Docker | `proyecto/lambda/`, `docker-compose.yml`, `proyecto/backend/src/.../sqs/` | Task 5, 6, 7 |
+| **Persona 3** | Frontend | `proyecto/frontend/` | Task 8, 9 |
 
 ## Reglas para Evitar Conflictos
 
@@ -21,7 +21,7 @@ Cada persona trabaja en **carpetas y archivos completamente separados**. Si nadi
 git checkout -b feature/backend-api
 
 # Persona 2
-git checkout -b feature/backend-sqs
+git checkout -b feature/backend-sqs-lambda
 
 # Persona 3
 git checkout -b feature/frontend-dashboard
@@ -32,9 +32,9 @@ git checkout -b feature/frontend-dashboard
 Las ramas se mergean en este orden porque hay dependencias:
 
 ```
-1° → Persona 1 (feature/backend-api)        → merge a main
-2° → Persona 2 (feature/backend-sqs)        → pull main, merge a main
-3° → Persona 3 (feature/frontend-dashboard)  → pull main, merge a main
+1° → Persona 1 (feature/backend-api)              → merge a main
+2° → Persona 2 (feature/backend-sqs-lambda)        → pull main, merge a main
+3° → Persona 3 (feature/frontend-dashboard)         → pull main, merge a main
 ```
 
 Persona 2 depende de la entidad `Factura` y el `FacturaService` que crea Persona 1.

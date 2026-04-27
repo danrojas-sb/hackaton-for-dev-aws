@@ -83,9 +83,10 @@ stateDiagram-v2
 | Base de datos | MySQL |
 | Frontend | Angular |
 | Gráficos | ng2-charts (Chart.js) |
-| Mensajería | AWS SQS |
-| Orquestación | AWS Lambda |
-| Contabilización | Servicios Comunes → TRONADOR |
+| Mensajería | AWS SQS (LocalStack en local) |
+| Orquestación | AWS Lambda - Node.js (LocalStack en local) |
+| Contabilización | Esquema `db_procesos_masivos` (TRONADOR en sprint futuro) |
+| Infraestructura local | Docker Desktop + LocalStack |
 
 ## Modelo de Datos
 

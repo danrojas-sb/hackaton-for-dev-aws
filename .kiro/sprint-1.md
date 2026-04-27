@@ -61,9 +61,11 @@ Hackathon - Iteración única
 | 2 | Inicializar proyecto Spring Boot + MySQL + entidad Factura | HU-01 | Persona 1 | S | ⬜ Pendiente |
 | 3 | Endpoint POST /api/facturas/bulk con validaciones | HU-01 | Persona 1 | M | ⬜ Pendiente |
 | 4 | Endpoints GET /api/facturas y GET /api/facturas/estados/resumen | HU-02 | Persona 1 | S | ⬜ Pendiente |
-| 5 | Integración SQS - Productor y Listener | HU-03 | Persona 2 | M | ⬜ Pendiente |
-| 6 | Frontend Angular - Proyecto base + tabla de facturas | HU-04 | Persona 3 | M | ⬜ Pendiente |
-| 7 | Frontend Angular - Diagrama de torta + carga + dashboard | HU-04 | Persona 3 | M | ⬜ Pendiente |
+| 5 | Docker Compose: LocalStack (SQS) + MySQL | HU-03 | Persona 2 | S | ⬜ Pendiente |
+| 6 | Lambda Node.js: consumir SQS, contabilizar en db_procesos_masivos, responder | HU-03 | Persona 2 | M | ⬜ Pendiente |
+| 7 | Integración SQS en Spring Boot: Productor y Listener | HU-03 | Persona 2 | M | ⬜ Pendiente |
+| 8 | Frontend Angular - Proyecto base + tabla de facturas | HU-04 | Persona 3 | M | ⬜ Pendiente |
+| 9 | Frontend Angular - Diagrama de torta + carga + dashboard | HU-04 | Persona 3 | M | ⬜ Pendiente |
 
 *Estimación: S=Small, M=Medium*
 
