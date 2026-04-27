@@ -26,6 +26,14 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 - Se creó `CorsConfig` permitiendo peticiones desde localhost:4200
 - Se crearon tests unitarios para `FacturaService` (estado PENDIENTE, lista vacía)
 - Se crearon tests de integración para `FacturaController` (200 con facturas, 400 con errores)
+- Se actualizó `sprint-1.md` marcando tareas 2 y 3 (HU-01) como completadas
+- Se creó spec HU-02 con requirements, design y tasks para consulta de facturas y resumen de estados
+- Se agregó query `contarPorEstado()` en `FacturaRepository` con JPQL GROUP BY estado
+- Se agregaron métodos `listar(Pageable)` y `resumenEstados()` en `FacturaService`
+- Se agregó endpoint GET /api/facturas con paginación (Pageable, default size=20, sort=fechaCreacion,desc)
+- Se agregó endpoint GET /api/facturas/estados/resumen con conteo por estado (incluye estados en 0)
+- Se crearon tests de integración para GET /api/facturas (200 con Page) y GET /api/facturas/estados/resumen (conteo correcto, estados en 0)
+- Se crearon tests unitarios para `FacturaService.listar()` y `resumenEstados()`
 
 ### Corregido
 - Se corrigió bug de delayed expansion en `mvnw.cmd` que impedía ejecutar Maven Wrapper en Windows

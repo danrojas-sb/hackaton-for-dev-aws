@@ -5,10 +5,16 @@ import com.hackathon.centralizador.dto.FacturaResponse;
 import com.hackathon.centralizador.model.EstadoFactura;
 import com.hackathon.centralizador.model.Factura;
 import com.hackathon.centralizador.repository.FacturaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Servicio para operaciones de negocio sobre facturas.
@@ -40,6 +46,43 @@ public class FacturaService {
         return saved.stream()
                 .map(this::mapToResponse)
                 .toList();
+    }
+
+    /**
+     * Lista facturas de forma paginada.
+     *
+     * @param pageable parámetros de paginación y ordenamiento
+     * @return página de facturas mapeadas a DTO
+     */
+    @Transactional(readOnly = true)
+    public Page<FacturaResponse> listar(Pageable pageable) {
+        return facturaRepository.findAll(pageable)
+                .map(this::mapToResponse);
+    }
+
+    /**
+     * Retorna un resumen con el conteo de facturas por estado.
+     * Incluye todos los estados del enum aunque tengan conteo 0.
+     *
+     * @return mapa con cada estado y su conteo
+     */
+    @Transactional(readOnly = true)
+    public Map<String, Long> resumenEstados() {
+        Map<String, Long> resumen = Arrays.stream(EstadoFactura.values())
+                .collect(Collectors.toMap(
+                        Enum::name,
+                        estado -> 0L,
+                        (a, b) -> a,
+                        LinkedHashMap::new
+                ));
+
+        facturaRepository.contarPorEstado().forEach(row -> {
+            EstadoFactura estado = (EstadoFactura) row[0];
+            Long count = (Long) row[1];
+            resumen.put(estado.name(), count);
+        });
+
+        return resumen;
     }
 
     private Factura mapToEntity(FacturaRequest request) {

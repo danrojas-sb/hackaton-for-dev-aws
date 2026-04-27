@@ -58,8 +58,8 @@ Hackathon - Iteración única
 | # | Tarea | HU | Asignado | Estimación | Estado |
 |---|-------|----|----------|------------|--------|
 | 1 | Clonar repo, crear estructura y documentación | - | Equipo | S | ✅ Completado |
-| 2 | Inicializar proyecto Spring Boot + MySQL + entidad Factura | HU-01 | Persona 1 | S | ⬜ Pendiente |
-| 3 | Endpoint POST /api/facturas/bulk con validaciones | HU-01 | Persona 1 | M | ⬜ Pendiente |
+| 2 | Inicializar proyecto Spring Boot + MySQL + entidad Factura | HU-01 | Persona 1 | S | ✅ Completado |
+| 3 | Endpoint POST /api/facturas/bulk con validaciones | HU-01 | Persona 1 | M | ✅ Completado |
 | 4 | Endpoints GET /api/facturas y GET /api/facturas/estados/resumen | HU-02 | Persona 1 | S | ⬜ Pendiente |
 | 5 | Docker Compose: LocalStack (SQS) + MySQL | HU-03 | Persona 2 | S | ⬜ Pendiente |
 | 6 | Lambda Node.js: consumir SQS, contabilizar en db_procesos_masivos, responder | HU-03 | Persona 2 | M | ⬜ Pendiente |
