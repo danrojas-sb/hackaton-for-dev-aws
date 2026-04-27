@@ -1,0 +1,30 @@
+# Java
+.idea/
+bin/
+build/
+*.class
+*.jar
+*.war
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+target/
+
+# Node.js / Angular
+node_modules/
+dist/
+.vscode/
+.angular/
+.env
+*.log
+
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+mysql_data/
